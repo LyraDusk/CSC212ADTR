@@ -62,20 +62,19 @@ public class JavaMapTest {
 		assertEquals(list2.size(), 2);
 	}
 	
-	//@Test
+	@Test
 	public void testGetEntries() {
 		MapADT<String, Integer> entriesMap = new JavaMap<>();
 		entriesMap.put("a", 1);
-		//entriesMap.put("b", 2);
 		ListADT<Pair<String, Integer>> entries = entriesMap.getEntries();
-		//List<Pair<String, Integer>> betterEntries = entries.toJava();
-		//assertEquals(entries.size(), 2);
-		Pair<String, Integer> test1 = new Pair<>("a", 1);
-		Pair<String, Integer> test2 = new Pair<>("b", 2);
-		for(Pair<String, Integer> entry: entries) {
-			assertTrue(entry instanceof Pair<?,?>);
-			assertTrue(entry.equals(test1) || entry.equals(test2));
-		}
+		assertEquals(entries.size(), 1);
+		entriesMap.put("b", 2);
+		entries = entriesMap.getEntries();
+		assertEquals(entries.size(), 2);
+		MapADT<String, Integer> emptyMap = new JavaMap<>();
+		ListADT<Pair<String, Integer>> empty = emptyMap.getEntries();
+		assertEquals(empty.size(), 0);
+		
 	}
 	
 	@Test
